@@ -1,63 +1,35 @@
-import path from "path";
-import { fileURLToPath } from "url";
-
-import { readFile, updateFile } from "../helpers/fileOperations.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const contactsPath = path.join(__dirname, "../db", "contacts.json");
+import Contact from "../models/contact.js";
 
 const listContacts = async () => {
-  const data = await readFile(contactsPath);
-  const contacts = JSON.parse(data);
-
+  const contacts = await Contact.find({});
   return contacts;
 };
 
 const getContactById = async (contactId) => {
-  const contacts = await listContacts();
-  const contact = contacts.find(({ id }) => id === contactId);
-
-  return contact ? contact : null;
+  const contact = await Contact.findOne({ _id: contactId });
+  return contact;
 };
 
 const removeContact = async (contactId) => {
-  const contacts = await listContacts();
-  const contact = contacts.find(({ id }) => id === contactId);
-
-  if (!contact) return null;
-
-  const newContacts = contacts.filter(({ id }) => id !== contactId);
-
-  await updateFile(contactsPath, newContacts);
-
+  const contact = await Contact.findOneAndDelete({ _id: contactId });
   return contact;
 };
 
 const addContact = async (name, email, phone) => {
-  const contacts = await listContacts();
-  const newContact = { id: crypto.randomUUID(), name, email, phone };
-  const newContacts = [...contacts, newContact];
-
-  await updateFile(contactsPath, newContacts);
-
-  return newContact;
+  const contact = await Contact.create({ name, email, phone });
+  return contact;
 };
 
 const updateContact = async (contactId, body) => {
-  const contacts = await listContacts();
-  const contact = contacts.find(({ id }) => id === contactId);
+  const contact = await Contact.findOneAndUpdate({ _id: contactId }, body, {
+    new: true,
+  });
+  return contact;
+};
 
-  if (!contact) return null;
-
-  const newContacts = contacts.map((contact) =>
-    contact.id === contactId ? { ...contact, ...body } : contact
-  );
-
-  await updateFile(contactsPath, newContacts);
-
-  return newContacts.find(({ id }) => id === contactId);
+const updateStatusContact = async (contactId, body) => {
+  const contact = await Contact.findOneAndUpdate({ _id: contactId }, body, {});
+  return contact;
 };
 
 export {
@@ -66,4 +38,5 @@ export {
   removeContact,
   addContact,
   updateContact,
+  updateStatusContact,
 };
