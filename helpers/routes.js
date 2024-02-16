@@ -1,0 +1,18 @@
+export const ROUTES = {
+  CONTACTS: {
+    ROOT: "/api/contacts",
+    GET_ALL: "/",
+    GET_ONE: "/:id",
+    DELETE: "/:id",
+    CREATE: "/",
+    UPDATE: "/:id",
+    UPDATE_STATUS: "/:id/favorite",
+  },
+  USERS: {
+    ROOT: "/api/users",
+    REGISTER: "/register",
+    LOGUN: "/login",
+    CURRENT: "/current",
+    LOGOUT: "/logout",
+  },
+};
