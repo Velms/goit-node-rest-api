@@ -1,0 +1,37 @@
+export const HttpStatus = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  INTERNAL_SERVER_ERROR: 500,
+};
+
+export const HttpMessage = {
+  BAD_REQUEST: "Bad request",
+  CONFLICT_EMAIL: "Email is already in use",
+  DATABASE_RUNNING_SUCCESS: "Database connection successful",
+  EMAIL_ALREADY_VERIFIED: "Verification has already been passed",
+  EMAIL_NOT_VERIFIED: "Email is not verified",
+  EMPTY_BODY: "Body must have at least one field",
+  EMPTY_FORM_DATA:
+    "Form data is empty. Please add your file to field 'avatar' and try again",
+  FORBIDDEN: "Forbidden",
+  INTERNAL_SERVER_ERROR: "Internal server error",
+  INVALID_ID: "Invalid id",
+  LOGOUT_SUCCESS: "Logout successful",
+  NOT_FOUND: "Not found",
+  NO_CONTENT: "No content",
+  REGISTRATION_SUCCESS: "Registration successful",
+  ROUTE_NOT_FOUND: "Route not found",
+  SERVER_RUNNING_ERROR: "Server not running. Error message",
+  SERVER_RUNNING_SUCCESS: "Server running. Use our API on port",
+  UNAUTHORIZED: "Not authorized",
+  USER_NOT_FOUND: "User not found",
+  VERIFICATION_SUCCESS: "Verification successful",
+  VERIFICATION_EMAIL_SENT: "Verification email sent",
+  WRONG_CREDENTIALS: "Email or password is wrong",
+};
